@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/src/functions.php";
+
 echo "Bem-vindo(a) ao screen match!\n";
 
 $movieName = "Top Gun - Maverick";
@@ -15,20 +17,13 @@ for ($count = 1; $count < $argc; $count++) {
 $movieGrade = array_sum($grades) / $gradeQuantity;
 
 $primePlan = true;
-$planInclude = $primePlan || $dataRelease < 2020;
+$planInclude = includeOnPlan($primePlan, $dataRelease);
 
 echo "Nome do filme: " . $movieName . "\n";
 echo "Nota do filme: $movieGrade\n";
 echo "Ano de lançamento: $dataRelease \n";
 
-if($dataRelease > 2024) {
-  echo "Esse filme é um lançamento.\n";
-} elseif($dataRelease > 2020 && $dataRelease < 2024) {
- echo "Esse filme ainda é novo.\n";
-}
- else {
-  echo "Esse filme não é um lançamento\n";
-};
+displayMessageLaunch($dataRelease);
 
 $genero = match ($movieName) {
    "Top Gun - Maverick" => "Ação",
@@ -39,12 +34,16 @@ $genero = match ($movieName) {
 
 echo "O genêro do filme é: $genero \n";
 
+$movie = movieCreate(name: "Shrek 5", year: 2025, grade: 10, gender: "Aventura");
 
-$filme = [
-  "nome" => "Shrek 5",
-  "ano" => 2021,
-  "nota" => 9,
-  "gênero" => "animação",
-];
+echo $movie["name"];
 
-echo $filme["gênero"];
+sort($grades);
+var_dump($grades);
+$badGradeFilm = min($grades);
+echo($badGradeFilm);
+
+echo ("\n");
+
+$movieJson = json_encode($movie);
+file_put_contents(__DIR__ . '/movie.json', $movieJson);

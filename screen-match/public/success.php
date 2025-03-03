@@ -1,0 +1,1 @@
+<h1>Success! Movie <?php echo $_GET['movie']; ?> insert!</h1>
