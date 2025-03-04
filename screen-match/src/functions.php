@@ -15,11 +15,12 @@ function includeOnPlan(bool $primePlan, int $dataRelease): bool {
  return $primePlan || $dataRelease < 2020;
 }
 
-function movieCreate(string $name, int $year, float $grade, string $gender): array{
-  return[
-    "name" => $name,
-    "year" => $year,
-    "grade" => $grade,
-    "gender" => $gender
-  ];
+function movieCreate(string $name, int $dataRelease, float $grade, string $gender): Movie{
+  $movie = new Movie();
+  $movie->name = $name;
+  $movie->dataRelease = $dataRelease;
+  $movie->grade = $grade;
+  $movie->gender = $gender;
+
+  return $movie;
 }

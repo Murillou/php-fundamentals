@@ -1,49 +1,37 @@
 <?php
 
-require __DIR__ . "/src/functions.php";
+require __DIR__ . "/src/Model/Gender.php";
+require __DIR__ . "/src/Model/Description.php";
+require __DIR__ . "/src/Model/Movie.php";
+require __DIR__ . "/src/Model/Series.php";
+require __DIR__ . "/src/Calcs/MarathonCalculator.php";
 
-echo "Bem-vindo(a) ao screen match!\n";
+echo "Bem vindo(a) ao ScreenMatch\n";
 
-$movieName = "Top Gun - Maverick";
+$movie = new Movie('Shrek 5', 2021, Gender::Animacao, 180);
 
-$dataRelease = 2022;
-$gradeQuantity = $argc - 1;
-$grades = [];
+$movie->evaluate(10);
+$movie->evaluate(10);
+$movie->evaluate(5);
+$movie->evaluate(5);
 
-for ($count = 1; $count < $argc; $count++) {
-  $grades[] = (float) $argv[$count];
-};
+var_dump($movie);
 
-$movieGrade = array_sum($grades) / $gradeQuantity;
+echo $movie->media() . "\n";
 
-$primePlan = true;
-$planInclude = includeOnPlan($primePlan, $dataRelease);
+echo $movie->dataRelease . "\n";
 
-echo "Nome do filme: " . $movieName . "\n";
-echo "Nota do filme: $movieGrade\n";
-echo "Ano de lançamento: $dataRelease \n";
+$serie = new Series('Origem', 2022, Gender::Animacao, 10, 20, 50);
 
-displayMessageLaunch($dataRelease);
+echo $serie->dataRelease . "\n";
 
-$genero = match ($movieName) {
-   "Top Gun - Maverick" => "Ação",
-   "Shrek 5" => "Aventura",
-   "Esposa de mentirinhas" => "Comédia",
-   default => 'Desconhecido'
-};
+$serie->evaluate(8);
 
-echo "O genêro do filme é: $genero \n";
+echo $serie->media() . "\n";
 
-$movie = movieCreate(name: "Shrek 5", year: 2025, grade: 10, gender: "Aventura");
+$calculator = new MarathonCalculator();
+$calculator->include($movie);
+$calculator->include($serie);
+$duration = $calculator->getDuration();
 
-echo $movie["name"];
-
-sort($grades);
-var_dump($grades);
-$badGradeFilm = min($grades);
-echo($badGradeFilm);
-
-echo ("\n");
-
-$movieJson = json_encode($movie);
-file_put_contents(__DIR__ . '/movie.json', $movieJson);
+echo "Para essa maratona, você precisa de $duration minutos";
