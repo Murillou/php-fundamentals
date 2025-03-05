@@ -1,5 +1,6 @@
 <?php
 
+namespace ScreenMatch\Calcs;
 class MarathonCalculator
 {
       private int $durationMarathon = 0;

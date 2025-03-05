@@ -1,10 +1,13 @@
 <?php
 
-require __DIR__ . "/src/Model/Gender.php";
-require __DIR__ . "/src/Model/Description.php";
-require __DIR__ . "/src/Model/Movie.php";
-require __DIR__ . "/src/Model/Series.php";
-require __DIR__ . "/src/Calcs/MarathonCalculator.php";
+require 'autoload.php';
+
+use ScreenMatch\Model\{
+    Movie, Episode, Series, Gender
+};
+use ScreenMatch\Calcs\{
+  MarathonCalculator, RatingConverter
+};
 
 echo "Bem vindo(a) ao ScreenMatch\n";
 
@@ -22,6 +25,7 @@ echo $movie->media() . "\n";
 echo $movie->dataRelease . "\n";
 
 $serie = new Series('Origem', 2022, Gender::Animacao, 10, 20, 50);
+$episode = new Episode($serie, 'Episódio piloto', 1);
 
 echo $serie->dataRelease . "\n";
 
@@ -34,4 +38,6 @@ $calculator->include($movie);
 $calculator->include($serie);
 $duration = $calculator->getDuration();
 
-echo "Para essa maratona, você precisa de $duration minutos";
+echo "Para essa maratona, você precisa de $duration minutos \n";
+$convert = new RatingConverter();
+echo $convert->convert($serie);

@@ -1,5 +1,8 @@
 <?php
 
+namespace ScreenMatch\Model;
+
+
 class Series extends Description 
 {
     public function __construct(
@@ -13,6 +16,7 @@ class Series extends Description
       parent::__construct($name, $dataRelease, $gender);
     }
 
+    #[\Override]
     public function durationInMinutes(): int{
       return $this->season * $this->episodesBySeason * $this->minutesByEpisodes;
     }
