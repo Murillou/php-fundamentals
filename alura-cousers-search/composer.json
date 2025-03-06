@@ -1,0 +1,21 @@
+{
+    "name": "murillou/cousers-search",
+    "description": "Projeto que busca os cursos no site da alura",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Murillou\\CousersSearch\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Murillou",
+            "email": "murillovinicius13@hotmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.9",
+        "symfony/dom-crawler": "^6.0",
+        "symfony/css-selector": "^7.2"
+    }
+}
