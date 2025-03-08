@@ -20,6 +20,10 @@ class Student
         return $this->id;
     }
 
+    // public function changeName(string $newName): void {
+    //     $this->name = $newName;
+    // }
+
     public function name(): string
     {
         return $this->name;
