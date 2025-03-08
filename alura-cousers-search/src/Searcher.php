@@ -11,8 +11,8 @@ class Searcher
     private $crawler;
     public function __construct(ClientInterface $httpClient, Crawler $crawler)
     {
-      $this->httpClient = $httpClient;
-      $this->crawler = $crawler;
+        $this->httpClient = $httpClient;
+        $this->crawler = $crawler;
     }
 
 
@@ -28,10 +28,9 @@ class Searcher
         $courses = [];
 
         foreach ($coursesElements as $courseElement) {
-          $courses[] = $courseElement->textContent;
+            $courses[] = $courseElement->textContent;
+        }
 
-    };
-
-      return $courses;
-}
+        return $courses;
+    }
 }

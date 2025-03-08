@@ -1,21 +1,40 @@
 {
-    "name": "murillou/cousers-search",
-    "description": "Projeto que busca os cursos no site da alura",
-    "type": "library",
-    "autoload": {
-        "psr-4": {
-            "Murillou\\CousersSearch\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Murillou",
-            "email": "murillovinicius13@hotmail.com"
-        }
-    ],
-    "require": {
-        "guzzlehttp/guzzle": "^7.9",
-        "symfony/dom-crawler": "^6.0",
-        "symfony/css-selector": "^7.2"
+  "name": "murillou/cousers-search",
+  "description": "Projeto que busca os cursos no site da alura",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Murillou\\CousersSearch\\": "src/",
+      "Alura\\CoursesSearch\\": "src/"
     }
+  },
+  "scripts": {
+    "test": "phpunit tests\\TestBuscadorDeCursos.php",
+    "cs": "phpcs --standard=PSR12 src/",
+    "phan": "phan --allow-polyfill-parser",
+    "check": [
+      "@phan",
+      "@cs",
+      "@test"
+    ]
+  },
+  "scripts-descriptions": {
+    "check": "Roda as verificações do código. PHAN, PHPCS e PHPUNIT"
+  },
+  "authors": [
+    {
+      "name": "Murillou",
+      "email": "murillovinicius13@hotmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.9",
+    "symfony/dom-crawler": "^6.0",
+    "symfony/css-selector": "^7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12",
+    "squizlabs/php_codesniffer": "*",
+    "phan/phan": "^5.4"
+  }
 }
