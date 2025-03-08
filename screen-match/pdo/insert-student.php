@@ -8,8 +8,16 @@ $databasePath = __DIR__ . "/banco.sqlite";
 $pdo = new PDO('sqlite:' . $databasePath);
 
 
-$student = new Student(null, 'Murillo Vinícius', new \DateTimeImmutable('2002-12-13'));
+$student = new Student(null, 'Ana Caroliny', 
+new \DateTimeImmutable('2003-08-16'));
 
-$sqlInsert = "INSERT INTO students (name, birth_date) VALUES ('{$student->name()}', '{$student->birthDate()->format('Y-m-d')}');";
+$sqlInsert = "INSERT INTO students (name, birth_date) VALUES (:name, :birth_date);";
+$statement = $pdo->prepare($sqlInsert);
+$statement->bindValue(':name', $student->name());
+$statement->bindValue(':birth_date', $student->birthDate()->format('Y-m-d'));
+$statement->execute();
 
-var_dump($pdo->exec($sqlInsert));
+
+if ($statement->execute()){
+  echo 'Aluno incluído!';
+}
