@@ -7,13 +7,12 @@ use Alura\Pdo\Infrastructure\Repository\PdoStudentRepository;
 require_once 'vendor/autoload.php';
 
 $connection = ConnectionCreator::createConnection();
-
 $studentRepository = new PdoStudentRepository($connection);
 
 $connection->beginTransaction();
 try{
 $aStudent = new Student(null, 'Nico Steppat', new DateTimeImmutable('1990-05-02'));
-$studentRepository->save($aStudent);
+$studentRepository->save(student: $aStudent);
 
 $anotherStudent = new Student(null, 'Sergio Dantas', new DateTimeImmutable('1980-02-10'));
 $studentRepository->save($anotherStudent);
