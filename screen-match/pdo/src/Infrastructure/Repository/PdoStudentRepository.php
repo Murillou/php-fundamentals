@@ -18,7 +18,7 @@ class PdoStudentRepository implements StudentRepository
   public function allStudents(): array
   {
       $sqlQuery = "SELECT * FROM students;";
-      $stmt = $this->connection->prepare($sqlQuery);
+      $stmt = $this->connection->query($sqlQuery);
 
       return $this->hydrateStudentList($stmt);
 
@@ -92,7 +92,7 @@ class PdoStudentRepository implements StudentRepository
   }
   public function remove(Student $student): bool
   {
-      $stmt = $this->connection->prepare('DELETE FROM student WHERE id = ?;');
+      $stmt = $this->connection->prepare('DELETE FROM students WHERE id = ?;');
       $stmt->bindValue(1, $student->id(), PDO::PARAM_INT);
 
       return $stmt->execute();

@@ -9,7 +9,7 @@ echo "Successful!";
 $createTableSql = '
       CREATE TABLE IF NOT EXISTS students(
       id INTEGER PRIMARY KEY,
-      name VARCHAR(250),
+      name TEXT,
       birth_date TEXT);
       
       CREATE TABLE IF NOT EXISTS phones(
